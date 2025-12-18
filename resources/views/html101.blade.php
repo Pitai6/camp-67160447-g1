@@ -1,22 +1,14 @@
 <!-- file: resources/views/html101.blade.php -->
 <!Doctype html>
+@extends('template.default')
 
-<html>
-    <head>
-        <title>ส่วนหัวของ HTML</title>
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: "Sarabun", sans-serif;
-            }
-        </style>
-    </head>
+@section('title', 'Workshop FORM')
+@section('content')
+
+<form>
     <body>
         <div class="container mt-4">
-            <h1>Workshop #HTML - FORM</h1>
+            <h1>Workshop #HTML -FORM</h1>
             <form>
                 <div class="row mt-3">
                     <div class="col-sm-12 col-md-4">
@@ -24,22 +16,30 @@
                     </div>
                     <div class="col">
                         <input id="fname" class="form-control">
+                        <div class ="valid-feedback">ถูกต้อง</div>
+                        <div class="invalid-feedback">โปรดระบุชื่อ</div>
                     </div>
                 </div>
+
                 <div class="row mt-3">
                     <div class="col-sm-12 col-md-4">
                      <label for="lname">สกุล</label>
                     </div>
                     <div class="col">
                         <input id="lname" class="form-control">
+                        <div class ="valid-feedback">ถูกต้อง</div>
+                        <div class="invalid-feedback">โปรดระบุชื่อ</div>
                     </div>
                 </div>
+
                 <div class="row mt-3">
                     <div class="col-sm-12 col-md-4">
                      <label for="pbirth">วัน/เดือน/ปีเกิด</label>
                     </div>
                     <div class="col">
                         <input type="datetime-local" class="form-control">
+                        <div class ="valid-feedback">ถูกต้อง</div>
+                        <div class="invalid-feedback">โปรดระบุชื่อ</div>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                         <input type="radio">
                         <label for="boy">ชาย</lavel>
                      <input type="radio">
-                    <label for="girl">หญิง</lavel><br>   
+                    <label for="girl">หญิง</lavel><br>
                     </div>
                 </div>
 
@@ -70,6 +70,8 @@
                     </div>
                     <div class="col">
                         <input id="address" class="form-control">
+                        <div class ="valid-feedback">ถูกต้อง</div>
+                        <div class="invalid-feedback">โปรดระบุชื่อ</div>
                     </div>
                 </div>
 
@@ -79,6 +81,8 @@
                     </div>
                     <div class="col">
                         <input id="color" class="form-control">
+                        <div class ="valid-feedback">ถูกต้อง</div>
+                        <div class="invalid-feedback">โปรดระบุชื่อ</div>
                     </div>
                 </div>
 
@@ -88,23 +92,85 @@
                     </div>
                     <div class="col">
                         <input id="music" class="form-control">
+                        <div class ="valid-feedback">ถูกต้อง</div>
+                        <div class="invalid-feedback">โปรดระบุชื่อ</div>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-sm-12 col-md-4">
-                     <input type="checkbox"> 
+                     <input type="checkbox">
                      <label for="confirm">ยินยอมให้เก็บข้อมูล</label>
                     </div>
                 </div>
+
                 <div class="row mt-3">
                     <div class="col-sm-12 col-md-4">
-                    <input type="reset" value="Reset">
+                    <input type="reset" class="btn btn-secondary" value="Reset">
                     <b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</b>
-                    <input type="submit" value="Submit">
+                    <input type="button" class="btn btn-primary"onclick="validateForm()" value="Submit">
                     </div>
                 </div>
-                
+
             </form>
         </div>
     </body>
-</html>
+</form>
+@endsection
+
+@push('scripts')
+    <script>
+        // let clickMe = function (){
+        //    // let fname = document.getElementById('fname')
+        //     //fname.value = "from ClickMe"
+        //     console.log(fname.value);
+        //     if(fname.value == ""){
+        //         fname.classList.remove('is-valid')
+        //         fname.classList.add('is-invalid')
+        //     }else{
+        //         fname.classList.remove('is-invalid')
+        //         fname.classList.add('is-valid')
+        //     }
+
+        // }
+
+        function validateForm() {
+            let inputs = document.querySelectorAll('.form-control');
+
+            inputs.forEach(input => {
+                if(input.value.trim() === ""){
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid')
+                }else{
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid')
+                }
+
+            });
+        }
+
+
+
+
+
+
+        let myfunc = (callback)=>{
+            callback("in Callback")
+        }
+
+        callMe = (param) =>{
+            console.log(param);
+
+        }
+
+        myfunc(callMe)
+        let myvar1 = 1
+        let myvar2 = "1"
+        myvar2 = parseInt(myvar2)
+
+        console.log(myvar2 + myvar1)
+        console.log(1 == '1');
+
+    </script>
+@endpush
+
+
