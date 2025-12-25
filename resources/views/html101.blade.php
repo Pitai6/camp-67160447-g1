@@ -5,17 +5,19 @@
 @section('title', 'Workshop FORM')
 @section('content')
 
-<form>
-    <body>
-        <div class="container mt-4">
+<div class="container mt-4">
+    @if(!isset($data))
+<form method="post" action="/history">
+@csrf
+
             <h1>Workshop #HTML -FORM</h1>
-            <form>
+
                 <div class="row mt-3">
                     <div class="col-sm-12 col-md-4">
                      <label for="fname">ชื่อ</label>
                     </div>
                     <div class="col">
-                        <input id="fname" class="form-control">
+                        <input id="fname" name ="fname" class="form-control">
                         <div class ="valid-feedback">ถูกต้อง</div>
                         <div class="invalid-feedback">โปรดระบุชื่อ</div>
                     </div>
@@ -26,9 +28,9 @@
                      <label for="lname">สกุล</label>
                     </div>
                     <div class="col">
-                        <input id="lname" class="form-control">
+                        <input id="lname" name="lname"class="form-control">
                         <div class ="valid-feedback">ถูกต้อง</div>
-                        <div class="invalid-feedback">โปรดระบุชื่อ</div>
+                        <div class="invalid-feedback">โปรดระบุสกุล</div>
                     </div>
                 </div>
 
@@ -37,9 +39,9 @@
                      <label for="pbirth">วัน/เดือน/ปีเกิด</label>
                     </div>
                     <div class="col">
-                        <input type="datetime-local" class="form-control">
+                        <input type="datetime-local" name="pbirth"class="form-control">
                         <div class ="valid-feedback">ถูกต้อง</div>
-                        <div class="invalid-feedback">โปรดระบุชื่อ</div>
+                        <div class="invalid-feedback">โปรดระบุ วัน/เดือน/ปี</div>
                     </div>
                 </div>
 
@@ -48,10 +50,10 @@
                      <label for="gender">เพศ</label>
                     </div>
                     <div class="col">
-                        <input type="radio">
+                        <input type="radio" name="gender" value="ชาย" id="boy">
                         <label for="boy">ชาย</lavel>
-                     <input type="radio">
-                    <label for="girl">หญิง</lavel><br>
+                        <input type="radio" name="gender" value="หญิง" id="girl">
+                        <label for="girl">หญิง</lavel><br>
                     </div>
                 </div>
 
@@ -69,9 +71,9 @@
                      <label for="address">ที่อยู่</label>
                     </div>
                     <div class="col">
-                        <input id="address" class="form-control">
+                        <input id="address" name="address" class="form-control">
                         <div class ="valid-feedback">ถูกต้อง</div>
-                        <div class="invalid-feedback">โปรดระบุชื่อ</div>
+                        <div class="invalid-feedback">โปรดระบุที่อยู่</div>
                     </div>
                 </div>
 
@@ -80,9 +82,9 @@
                      <label for="color">สีที่ชอบ</label>
                     </div>
                     <div class="col">
-                        <input id="color" class="form-control">
+                        <input id="color" name="color" class="form-control">
                         <div class ="valid-feedback">ถูกต้อง</div>
-                        <div class="invalid-feedback">โปรดระบุชื่อ</div>
+                        <div class="invalid-feedback">โปรดระบุสีที่ชอบ</div>
                     </div>
                 </div>
 
@@ -91,9 +93,9 @@
                      <label for="music">แนวเพลงที่ชอบ</label>
                     </div>
                     <div class="col">
-                        <input id="music" class="form-control">
+                        <input id="music" name="music"class="form-control">
                         <div class ="valid-feedback">ถูกต้อง</div>
-                        <div class="invalid-feedback">โปรดระบุชื่อ</div>
+                        <div class="invalid-feedback">โปรดระบุเพลงที่ชอบ</div>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -107,14 +109,24 @@
                     <div class="col-sm-12 col-md-4">
                     <input type="reset" class="btn btn-secondary" value="Reset">
                     <b> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</b>
-                    <input type="button" class="btn btn-primary"onclick="validateForm()" value="Submit">
+                    <input type="submit" class="btn btn-primary"onclick="validateForm()" value="Submit">
                     </div>
                 </div>
 
-            </form>
-        </div>
-    </body>
 </form>
+@else
+<h3>ข้อมูลที่ได้รับ:</h3>
+<ul>
+    <li>ชื่อ:{{ $data['fname'] ?? 'ไม่มีข้อมูล'}}</li>
+    <li>นามสกุล:{{ $data['lname'] ?? 'ไม่มีข้อมูล'}}</li>
+    <li>วัน/เดือน/ปีเกิด:{{ $data['pbirth'?? 'ไม่มีข้อมูล']}}</li>
+    <li>เพศ:{{ $data['gender'] ?? 'ไม่มีข้อมูล'}}</li>
+    <li>ที่อยู่:{{ $data['address'] ?? 'ไม่มีข้อมูล'}}</li>
+    <li>สีที่ชอบ:{{ $data['color'] ?? 'ไม่มีข้อมูล'}}</li>
+    <li>แนวเพลงที่ชอบ:{{ $data['music'] ?? 'ไม่มีข้อมูล'}}</li>
+</ul>
+@endif
+</div>
 @endsection
 
 @push('scripts')
@@ -171,6 +183,5 @@
         console.log(1 == '1');
 
     </script>
+
 @endpush
-
-
