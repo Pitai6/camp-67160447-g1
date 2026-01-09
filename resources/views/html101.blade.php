@@ -131,20 +131,7 @@
 
 @push('scripts')
     <script>
-        // let clickMe = function (){
-        //    // let fname = document.getElementById('fname')
-        //     //fname.value = "from ClickMe"
-        //     console.log(fname.value);
-        //     if(fname.value == ""){
-        //         fname.classList.remove('is-valid')
-        //         fname.classList.add('is-invalid')
-        //     }else{
-        //         fname.classList.remove('is-invalid')
-        //         fname.classList.add('is-valid')
-        //     }
-
-        // }
-
+       
         function validateForm() {
             let inputs = document.querySelectorAll('.form-control');
 
